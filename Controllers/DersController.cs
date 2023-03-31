@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CelilCavus.OgrenciKayitSistemi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class DersController : ControllerBase
     {
         private readonly IRepository<Dersler> _ders;
@@ -30,7 +30,7 @@ namespace CelilCavus.OgrenciKayitSistemi.Controllers
         {
             if (id >= 0)
             {
-                var List = _ders.GetAll();
+                var List = _ders.GetById(id);
                 if (!string.IsNullOrEmpty(List.ToString()))
                 {
                     return Ok(List);

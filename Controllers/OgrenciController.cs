@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CelilCavus.OgrenciKayitSistemi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     public class OgrenciController : ControllerBase
     {
         private readonly IRepository<Ogrenci> _ogrenci;
@@ -61,13 +61,12 @@ namespace CelilCavus.OgrenciKayitSistemi.Controllers
             else return NotFound();
         }
 
-        [HttpDelete]
-        public IActionResult DeleteOgrenci(Ogrenci ogrenci)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteOgrenci(int id)
         {
-            var id = int.Parse(ogrenci.id.ToString());
             if (!string.IsNullOrEmpty(id.ToString()))
             {
-                _ogrenci.Delete(ogrenci);
+                _ogrenci.Delete(new (){id = id});
                 return NoContent();
             }
             else return NotFound();
