@@ -63,12 +63,12 @@ namespace CelilCavus.OgrenciKayitSistemi.Controllers
             }
             else return NotFound();
         }
-
-        public IActionResult DeleteDers(Dersler dersler)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteDers(int id)
         {
-            if (!string.IsNullOrEmpty(dersler.ToString()))
+            if (!string.IsNullOrEmpty(id.ToString()))
             {
-                _ders.Delete(dersler);
+                _ders.Delete(new() { id = id});
                 return NoContent();
             }
             else return NotFound();
